@@ -1,79 +1,102 @@
-/* Color Theme & Variables */
-:root {
-  /* Primary Colors */
-  --primary: #173660;
-  --secondary: #c33527;
-  --white: #FFFFFF;
-  
-  /* Text Colors */
-  --text-dark: #173660;
-  --text-light: #666666;
-  --text-muted: #999999;
-  
-  /* Background Colors */
-  --bg-white: #FFFFFF;
-  --bg-light: #f9f9f9;
-  --bg-gray: #f0f0f0;
-  
-  /* Border Colors */
-  --border-light: #e0e0e0;
-  --border-gray: #cccccc;
-  
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  
-  /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+/* ============================================
+   THEME CSS — Typography & Component Overrides
+   All CSS custom properties live in globals.css
+   ============================================ */
+
+/* Section headings with primary color accent */
+.section-title {
+  color: var(--color-primary);
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--space-5);
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--primary);
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-full);
+}
+
+.section-title.centered {
+  display: block;
+  text-align: center;
+}
+
+.section-title.centered::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Highlight text in brand color */
+.text-highlight {
+  color: var(--color-secondary);
+}
+
+/* Hero Section baseline */
+.hero-section {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding: var(--space-10) 0;
+}
+
+.hero-section h1,
+.hero-section h2,
+.hero-section p {
+  color: var(--color-text-light);
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-6) 0;
+}
+
+.divider-thick {
+  border-top: 3px solid var(--color-secondary);
+  width: 60px;
+  margin: var(--space-4) auto;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
   font-weight: 600;
-  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.1rem; }
-h6 { font-size: 1rem; }
-
-/* Paragraphs */
-p {
-  color: var(--text-dark);
-  margin-bottom: var(--spacing-md);
+.badge-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
 }
 
-/* Cards */
-.card {
-  background: var(--bg-white);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+.badge-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-light);
 }
 
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
+.badge-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
 }
 
-@media (max-width: 768px) {
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.2rem; }
+/* Tag */
+.tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-hover);
+  color: var(--color-secondary);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
 }

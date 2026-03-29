@@ -1,38 +1,23 @@
-.App {
-  text-align: center;
-}
+/* ============================================
+   APP LAYOUT
+   ============================================ */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Stretch the app to fill the viewport and
+   push the footer to the bottom on short pages */
+.app-layout {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Main content grows to fill available space
+   between the 70px navbar and the footer,
+   keeping the footer pinned to the bottom */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  /* Per-page padding is applied inside each page component */
+  padding: 0;
 }
