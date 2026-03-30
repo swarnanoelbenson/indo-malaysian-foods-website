@@ -8,8 +8,9 @@ import Workshops   from './components/pages/Workshops';
 import ExpertTalks from './components/pages/ExpertTalks';
 import FoodRecipes from './components/pages/FoodRecipes';
 import ContactUs   from './components/pages/ContactUs';
-import Admin       from './components/pages/Admin';
-import NotFound    from './components/pages/NotFound';
+import Admin               from './components/pages/Admin';
+import TestGoogleSheets    from './components/pages/TestGoogleSheets';
+import NotFound            from './components/pages/NotFound';
 import './App.css';
 
 const App: React.FC = () => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Route path="/food-recipes" element={<FoodRecipes />} />
             <Route path="/contact-us"   element={<ContactUs />} />
             <Route path="/admin"        element={<Admin />} />
+            <Route path="/test-sheets"  element={<TestGoogleSheets />} />
             <Route path="*"             element={<NotFound />} />
           </Routes>
         </main>
