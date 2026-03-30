@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Navigation */}
         <nav className="navbar__nav" aria-label="Main navigation">
-          <ul className="navbar__list" role="list">
+          <ul className="navbar__list" >
             {NAV_LINKS.map(({ label, path }) => (
               <li key={path} className="navbar__item">
                 <NavLink
@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
         aria-label="Mobile navigation"
         aria-hidden={!menuOpen}
       >
-        <ul className="navbar__mobile-list" role="list">
+        <ul className="navbar__mobile-list" >
           {NAV_LINKS.map(({ label, path }) => (
             <li key={path} className="navbar__mobile-item">
               <NavLink
