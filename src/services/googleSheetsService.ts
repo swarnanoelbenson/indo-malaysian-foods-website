@@ -48,9 +48,6 @@ function splitPipe(value: string): string[] {
   return value ? value.split('|').map((s) => s.trim()).filter(Boolean) : [];
 }
 
-function splitSemicolon(value: string): string[] {
-  return value ? value.split(';').map((s) => s.trim()).filter(Boolean) : [];
-}
 
 // ─── Public fetch functions ───────────────────────────────────────────────────
 

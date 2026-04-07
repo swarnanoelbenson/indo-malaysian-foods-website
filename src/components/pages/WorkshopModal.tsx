@@ -93,7 +93,7 @@ const WorkshopModal: React.FC<WorkshopModalProps> = ({ workshop, onClose }) => {
             <img
               key={currentIndex}
               src={images[currentIndex]}
-              alt={`${workshop.title} — image ${currentIndex + 1} of ${images.length}`}
+              alt={`${workshop.title} — ${currentIndex + 1} of ${images.length}`}
               className="wm-carousel__img"
             />
 
