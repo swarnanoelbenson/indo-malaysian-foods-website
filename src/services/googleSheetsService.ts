@@ -88,7 +88,7 @@ export async function fetchRecipes(): Promise<ServiceResult<Recipe>> {
       cookTime: Number(r.cookTime) || 0,
       servings: Number(r.servings) || 0,
       description: r.description,
-      ingredients: splitSemicolon(r.ingredients),
+      ingredients: splitPipe(r.ingredients),
       instructions: r.instructions,
       imageUrls: splitPipe(r.imageUrls),
       cuisine: r.cuisine,

@@ -32,7 +32,6 @@ const Footer: React.FC = () => {
         {/* Left — Branding */}
         <div className="footer__col footer__col--brand">
           <div className="footer__logo">
-            <span className="footer__logo-icon" aria-hidden="true">🌿</span>
             <span className="footer__logo-name">IndoMalaysian Foods</span>
           </div>
           <p className="footer__tagline">

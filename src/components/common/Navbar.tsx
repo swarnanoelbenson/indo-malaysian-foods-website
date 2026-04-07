@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: 'Expert Talks',  path: '/expert-talks' },
   { label: 'Food & Recipes',path: '/food-recipes' },
   { label: 'Contact Us',    path: '/contact-us' },
-  { label: 'Admin',         path: '/admin' },
+  // { label: 'Admin',         path: '/admin' },
 ];
 
 const Navbar: React.FC = () => {
@@ -48,9 +48,8 @@ const Navbar: React.FC = () => {
 
         {/* Logo / Branding */}
         <Link to="/" className="navbar__logo" onClick={closeMenu} aria-label="Indo-Malaysian Foods — home">
-          <span className="navbar__logo-icon" aria-hidden="true">🌿</span>
           <span className="navbar__logo-text">
-            <span className="navbar__logo-primary">IndoMalaysian</span>
+            <span className="navbar__logo-primary">Indo-Malaysian</span>
             <span className="navbar__logo-sub">Indigenous Foods</span>
           </span>
         </Link>

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useGoogleSheets from '../../hooks/useGoogleSheets';
 import Container from '../common/Container';
+import WorkshopModal from './WorkshopModal';
+import { Workshop } from '../../types';
 import './Workshops.css';
 
 const formatDate = (dateStr: string): string => {
@@ -12,6 +14,7 @@ const formatDate = (dateStr: string): string => {
 
 const Workshops: React.FC = () => {
   const { data: workshops, loading, error } = useGoogleSheets('workshops');
+  const [selectedWorkshop, setSelectedWorkshop] = useState<Workshop | null>(null);
 
   return (
     <main className="page page--workshops">
@@ -49,7 +52,15 @@ const Workshops: React.FC = () => {
           {workshops && workshops.length > 0 && (
             <div className="workshops-grid">
               {workshops.map(workshop => (
-                <article key={workshop.id} className="workshop-card">
+                <article
+                  key={workshop.id}
+                  className="workshop-card workshop-card--clickable"
+                  onClick={() => setSelectedWorkshop(workshop)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setSelectedWorkshop(workshop); }}
+                  aria-label={`View more about ${workshop.title}`}
+                >
                   <div className="workshop-card__img-wrap">
                     {workshop.imageUrls && workshop.imageUrls.length > 0 ? (
                       <img
@@ -59,7 +70,7 @@ const Workshops: React.FC = () => {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="workshop-card__img-placeholder" aria-hidden="true">🌿</div>
+                      <div className="workshop-card__img-placeholder" aria-hidden="true"></div>
                     )}
                     {workshop.date && (
                       <span className="workshop-card__date-tag">
@@ -82,9 +93,10 @@ const Workshops: React.FC = () => {
                     <div className="workshop-card__footer">
                       {workshop.capacity > 0 && (
                         <span className="workshop-card__capacity">
-                          {workshop.capacity} spots available
+                          {/* {workshop.capacity} spots available */}
                         </span>
                       )}
+                      {/* Registration UI removed from card — kept here for reference
                       {workshop.registrationLink ? (
                         <a
                           href={workshop.registrationLink}
@@ -97,6 +109,13 @@ const Workshops: React.FC = () => {
                       ) : (
                         <span className="workshop-card__closed">Registration Closed</span>
                       )}
+                      */}
+                      <button
+                        className="btn-secondary workshop-card__btn"
+                        onClick={e => { e.stopPropagation(); setSelectedWorkshop(workshop); }}
+                      >
+                        View More
+                      </button>
                     </div>
                   </div>
                 </article>
@@ -112,6 +131,10 @@ const Workshops: React.FC = () => {
         </Container>
       </section>
 
+      <WorkshopModal
+        workshop={selectedWorkshop}
+        onClose={() => setSelectedWorkshop(null)}
+      />
     </main>
   );
 };

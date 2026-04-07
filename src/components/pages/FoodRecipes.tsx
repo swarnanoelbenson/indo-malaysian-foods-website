@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useGoogleSheets from '../../hooks/useGoogleSheets';
 import Container from '../common/Container';
+import RecipeModal from './RecipeModal';
+import { Recipe } from '../../types';
 import './FoodRecipes.css';
 
 const formatTime = (minutes: number): string => {
@@ -22,6 +24,7 @@ const difficultyClass = (level: string): string => {
 
 const FoodRecipes: React.FC = () => {
   const { data: recipes, loading, error } = useGoogleSheets('recipes');
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
 
   return (
     <main className="page page--food-recipes">
@@ -59,7 +62,15 @@ const FoodRecipes: React.FC = () => {
           {recipes && recipes.length > 0 && (
             <div className="recipes-grid">
               {recipes.map(recipe => (
-                <article key={recipe.id} className="recipe-card">
+                <article
+                  key={recipe.id}
+                  className="recipe-card recipe-card--clickable"
+                  onClick={() => setSelectedRecipe(recipe)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setSelectedRecipe(recipe); }}
+                  aria-label={`View recipe for ${recipe.name}`}
+                >
                   <div className="recipe-card__img-wrap">
                     {recipe.imageUrls && recipe.imageUrls.length > 0 ? (
                       <img
@@ -106,6 +117,15 @@ const FoodRecipes: React.FC = () => {
                         <span className="recipe-stat__value">{recipe.servings || '—'}</span>
                       </div>
                     </div>
+
+                    <div className="recipe-card__footer">
+                      <button
+                        className="btn-secondary recipe-card__btn"
+                        onClick={e => { e.stopPropagation(); setSelectedRecipe(recipe); }}
+                      >
+                        View Recipe
+                      </button>
+                    </div>
                   </div>
                 </article>
               ))}
@@ -118,6 +138,10 @@ const FoodRecipes: React.FC = () => {
         </Container>
       </section>
 
+      <RecipeModal
+        recipe={selectedRecipe}
+        onClose={() => setSelectedRecipe(null)}
+      />
     </main>
   );
 };

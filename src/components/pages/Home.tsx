@@ -21,7 +21,7 @@ const Home: React.FC = () => {
               Indigenous Heritage
             </h1>
             <p className="home-hero__subtitle">
-              Explore the rich culinary traditions of indigenous communities across Indonesia
+              Explore the rich culinary traditions of indigenous communities across India
               and Malaysia — from ancient recipes passed down through generations to modern
               workshops celebrating cultural identity.
             </p>

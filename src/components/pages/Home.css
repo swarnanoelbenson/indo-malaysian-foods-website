@@ -39,6 +39,14 @@
   flex-wrap: wrap;
 }
 
+.home-hero__actions .btn-secondary,
+.home-hero__actions .btn-outline-light,
+.home-cta__actions .btn-secondary,
+.home-cta__actions .btn-outline-light {
+  padding: 0.875rem 2.25rem;
+  font-size: 1rem;
+}
+
 /* ── Why Section ───────────────────────── */
 .home-why__body {
   display: flex;
