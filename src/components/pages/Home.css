@@ -6,11 +6,27 @@
 .home-hero {
   padding: 100px 0 120px;
   text-align: center;
+  background-image: url('/malaysian-food-07.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Dark overlay so text stays readable */
+  position: relative;
+}
+
+.home-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.52);
+  pointer-events: none;
 }
 
 .home-hero__content {
   max-width: 760px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .home-hero__title {
