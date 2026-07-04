@@ -57,61 +57,74 @@ const WorkshopModal: React.FC<WorkshopModalProps> = ({ workshop, onClose }) => {
         {/* ── Close ─────────────────────────── */}
         <button className="wm-close" onClick={onClose} aria-label="Close">×</button>
 
-        {/* ── Image Carousel ────────────────── */}
-        {hasImages && (
-          <div className="wm-carousel">
-            <img
-              key={currentIndex}
-              src={images[currentIndex]}
-              alt={`${workshop.title} — ${currentIndex + 1} of ${images.length}`}
-              className="wm-carousel__img"
-            />
-            {images.length > 1 && (
-              <>
-                <button className="wm-carousel__arrow wm-carousel__arrow--prev" onClick={prev} aria-label="Previous image">‹</button>
-                <button className="wm-carousel__arrow wm-carousel__arrow--next" onClick={next} aria-label="Next image">›</button>
-                <span className="wm-carousel__counter">{currentIndex + 1} / {images.length}</span>
-              </>
-            )}
-          </div>
-        )}
-
-        {/* ── Title ─────────────────────────── */}
+        {/* ── Title (full width, centered) ──── */}
         <div className="wm-header">
           <h2 className="wm-title">{workshop.title}</h2>
         </div>
 
-        {/* ── Meta: date + location ─────────── */}
-        <div className="wm-meta-row">
-          {workshop.date && (
-            <span className="wm-meta__item">
-              <span aria-hidden="true">📅</span> {formatDate(workshop.date)}
-            </span>
-          )}
-          {workshop.location && (
-            <span className="wm-meta__item">
-              <span aria-hidden="true">📍</span> {workshop.location}
-            </span>
-          )}
+        {/* ── Two-column body ───────────────── */}
+        <div className="wm-body">
+
+          {/* Left: image carousel */}
+          <div className="wm-left">
+            {hasImages ? (
+              <div className="wm-carousel">
+                <img
+                  key={currentIndex}
+                  src={images[currentIndex]}
+                  alt={`${workshop.title} — ${currentIndex + 1} of ${images.length}`}
+                  className="wm-carousel__img"
+                />
+                {images.length > 1 && (
+                  <>
+                    <button className="wm-carousel__arrow wm-carousel__arrow--prev" onClick={prev} aria-label="Previous image">‹</button>
+                    <button className="wm-carousel__arrow wm-carousel__arrow--next" onClick={next} aria-label="Next image">›</button>
+                    <span className="wm-carousel__counter">{currentIndex + 1} / {images.length}</span>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div className="wm-no-image" aria-hidden="true">🏛️</div>
+            )}
+          </div>
+
+          {/* Right: scrollable content */}
+          <div className="wm-right">
+
+            {/* Meta: date + location */}
+            <div className="wm-meta-row">
+              {workshop.date && (
+                <span className="wm-meta__item">
+                  <span aria-hidden="true">📅</span> {formatDate(workshop.date)}
+                </span>
+              )}
+              {workshop.location && (
+                <span className="wm-meta__item">
+                  <span aria-hidden="true">📍</span> {workshop.location}
+                </span>
+              )}
+            </div>
+
+            {/* Organizers */}
+            {workshop.organizers && (
+              <div className="wm-section">
+                <h3 className="wm-section__heading">Organizers</h3>
+                <p className="wm-section__body">{renderBold(workshop.organizers)}</p>
+              </div>
+            )}
+
+            {/* Full Description */}
+            {workshop.fullDescription && (
+              <div className="wm-section wm-section--last">
+                <h3 className="wm-section__heading">About This Workshop</h3>
+                <p className="wm-section__body">{workshop.fullDescription}</p>
+              </div>
+            )}
+
+          </div>
         </div>
 
-        {/* ── Organizers ────────────────────── */}
-        {workshop.organizers && (
-          <div className="wm-section">
-            <h3 className="wm-section__heading">Organizers</h3>
-            <p className="wm-section__body">{renderBold(workshop.organizers)}</p>
-          </div>
-        )}
-
-        {/* ── Full Description ──────────────── */}
-        {workshop.fullDescription && (
-          <div className="wm-section">
-            <h3 className="wm-section__heading">About This Workshop</h3>
-            <p className="wm-section__body">{workshop.fullDescription}</p>
-          </div>
-        )}
-
-        {/* ── Registration ──────────────────── */}
+        {/* ── Registration footer ───────────── */}
         <div className="wm-footer">
           <button className="wm-reg-btn wm-reg-btn--closed" disabled>
             Registration Closed
