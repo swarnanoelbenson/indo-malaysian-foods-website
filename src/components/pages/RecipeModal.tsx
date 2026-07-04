@@ -74,7 +74,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => {
                 <img
                   key={imgIndex}
                   src={images[imgIndex]}
-                  alt={`${recipe.name} — image ${imgIndex + 1} of ${images.length}`}
+                  alt={`${recipe.name} — ${imgIndex + 1} of ${images.length}`}
                   className="rm-carousel__img"
                 />
                 {images.length > 1 && (

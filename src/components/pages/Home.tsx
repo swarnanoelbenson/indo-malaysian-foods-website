@@ -5,8 +5,7 @@ import Container from '../common/Container';
 import './Home.css';
 
 const Home: React.FC = () => {
-  const { data: committees, loading: committeesLoading } = useGoogleSheets('committees');
-  const { data: universities, loading: universitiesLoading } = useGoogleSheets('universities');
+const { data: universities, loading: universitiesLoading } = useGoogleSheets('universities');
 
   return (
     <main className="page page--home">
