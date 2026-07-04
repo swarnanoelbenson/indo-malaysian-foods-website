@@ -12,8 +12,8 @@ const API_KEY = process.env.REACT_APP_GOOGLE_SHEETS_API_KEY;
 const SHEET_ID = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 
 const RANGES = {
-  workshops: process.env.REACT_APP_WORKSHEETS_RANGE ?? 'Workshops!A:I',
-  recipes: process.env.REACT_APP_RECIPES_RANGE ?? 'Recipes!A:K',
+  workshops: process.env.REACT_APP_WORKSHEETS_RANGE ?? 'Workshops!A:G',
+  recipes: process.env.REACT_APP_RECIPES_RANGE ?? 'Recipes!A:G',
   videos: process.env.REACT_APP_VIDEOS_RANGE ?? 'Videos!A:G',
   about: process.env.REACT_APP_ABOUT_RANGE ?? 'About!A:F',
   committee: process.env.REACT_APP_COMMITTEE_RANGE ?? 'Committee!A:F',
@@ -59,18 +59,24 @@ export async function fetchWorkshops(): Promise<ServiceResult<Workshop>> {
       id: r.id,
       title: r.title,
       date: r.date,
-      description: r.description,
       fullDescription: r.fullDescription,
-      capacity: Number(r.capacity) || 0,
       location: r.location,
       imageUrls: splitPipe(r.imageUrls),
-      registrationLink: r.registrationLink,
+      organizers: r.organizers,
     }));
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error('[fetchWorkshops]', message);
     return { error: message };
   }
+}
+
+function parseNutritiveValues(raw: string): import('../types').NutrientRow[] {
+  if (!raw) return [];
+  return raw.split('|').map(entry => {
+    const [nutrient, perSample, per100g] = entry.split(':').map(s => s.trim());
+    return { nutrient: nutrient || '', perSample: perSample || '', per100g: per100g || '' };
+  }).filter(r => r.nutrient);
 }
 
 export async function fetchRecipes(): Promise<ServiceResult<Recipe>> {
@@ -80,15 +86,11 @@ export async function fetchRecipes(): Promise<ServiceResult<Recipe>> {
     return records.map((r): Recipe => ({
       id: r.id,
       name: r.name,
-      difficulty: r.difficulty,
-      prepTime: Number(r.prepTime) || 0,
-      cookTime: Number(r.cookTime) || 0,
-      servings: Number(r.servings) || 0,
-      description: r.description,
+      yieldInfo: r.yieldInfo,
       ingredients: splitPipe(r.ingredients),
-      instructions: r.instructions,
+      instructions: splitPipe(r.instructions),
       imageUrls: splitPipe(r.imageUrls),
-      cuisine: r.cuisine,
+      nutritiveValues: parseNutritiveValues(r.nutritiveValues),
     }));
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

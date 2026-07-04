@@ -106,11 +106,7 @@
 }
 
 .recipe-card__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.625rem;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.5rem;
 }
 
 .recipe-card__name {
@@ -118,6 +114,13 @@
   font-size: 1.0625rem;
   font-weight: 700;
   line-height: 1.3;
+}
+
+.recipe-card__yield {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  font-style: italic;
+  margin-top: 0.25rem;
   flex: 1;
 }
 

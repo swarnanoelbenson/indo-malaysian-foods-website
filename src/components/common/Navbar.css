@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 78px;
   background-color: var(--color-background);
   box-shadow: 0 1px 0 var(--color-border);
   z-index: var(--z-sticky);
@@ -48,17 +48,17 @@
 }
 
 .navbar__logo-primary {
-  font-size: var(--font-size-lg);
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-primary);
   letter-spacing: -0.01em;
 }
 
 .navbar__logo-sub {
-  font-size: var(--font-size-xs);
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--color-secondary);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -165,7 +165,7 @@
 /* ── Mobile Overlay ─────────────────────────── */
 .navbar__overlay {
   position: fixed;
-  inset: 70px 0 0 0;
+  inset: 78px 0 0 0;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: calc(var(--z-sticky) - 1);
   animation: fadeIn 0.2s ease;
@@ -174,7 +174,7 @@
 /* ── Mobile Drawer ──────────────────────────── */
 .navbar__mobile {
   position: fixed;
-  top: 70px;
+  top: 78px;
   left: 0;
   right: 0;
   background-color: var(--color-background);

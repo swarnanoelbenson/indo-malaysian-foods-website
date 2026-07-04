@@ -82,34 +82,21 @@ const Workshops: React.FC = () => {
                   <div className="workshop-card__body">
                     <h2 className="workshop-card__title">{workshop.title}</h2>
 
+                    {workshop.fullDescription && (
+                      <p className="workshop-card__description">
+                        {workshop.fullDescription.length > 160
+                          ? workshop.fullDescription.slice(0, 160).trimEnd() + '…'
+                          : workshop.fullDescription}
+                      </p>
+                    )}
+
                     {workshop.location && (
                       <p className="workshop-card__location">
                         <span aria-hidden="true">📍</span> {workshop.location}
                       </p>
                     )}
 
-                    <p className="workshop-card__description">{workshop.description}</p>
-
                     <div className="workshop-card__footer">
-                      {workshop.capacity > 0 && (
-                        <span className="workshop-card__capacity">
-                          {/* {workshop.capacity} spots available */}
-                        </span>
-                      )}
-                      {/* Registration UI removed from card — kept here for reference
-                      {workshop.registrationLink ? (
-                        <a
-                          href={workshop.registrationLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-secondary workshop-card__btn"
-                        >
-                          Register Now
-                        </a>
-                      ) : (
-                        <span className="workshop-card__closed">Registration Closed</span>
-                      )}
-                      */}
                       <button
                         className="btn-secondary workshop-card__btn"
                         onClick={e => { e.stopPropagation(); setSelectedWorkshop(workshop); }}

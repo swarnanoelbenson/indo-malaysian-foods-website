@@ -2,26 +2,26 @@ export interface Workshop {
   id: string;
   title: string;
   date: string;
-  description: string;
   fullDescription: string;
-  capacity: number;
   location: string;
   imageUrls: string[];
-  registrationLink: string;
+  organizers: string;
+}
+
+export interface NutrientRow {
+  nutrient: string;
+  perSample: string;
+  per100g: string;
 }
 
 export interface Recipe {
   id: string;
   name: string;
-  difficulty: string;
-  prepTime: number;
-  cookTime: number;
-  servings: number;
-  description: string;
+  yieldInfo: string;
   ingredients: string[];
-  instructions: string;
+  instructions: string[];
   imageUrls: string[];
-  cuisine: string;
+  nutritiveValues: NutrientRow[];
 }
 
 export interface Video {

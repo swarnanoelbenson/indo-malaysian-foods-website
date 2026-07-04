@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: 'Workshops',     path: '/workshops' },
   { label: 'Expert Talks',  path: '/expert-talks' },
   { label: 'Food & Recipes',path: '/food-recipes' },
-  { label: 'Contact Us',    path: '/contact-us' },
+  // { label: 'Contact Us',    path: '/contact-us' },
   // { label: 'Admin',         path: '/admin' },
 ];
 

@@ -7,7 +7,7 @@ import About       from './components/pages/About';
 import Workshops   from './components/pages/Workshops';
 import ExpertTalks from './components/pages/ExpertTalks';
 import FoodRecipes from './components/pages/FoodRecipes';
-import ContactUs   from './components/pages/ContactUs';
+// import ContactUs   from './components/pages/ContactUs';
 import Admin               from './components/pages/Admin';
 import TestGoogleSheets    from './components/pages/TestGoogleSheets';
 import NotFound            from './components/pages/NotFound';
@@ -25,7 +25,7 @@ const App: React.FC = () => {
             <Route path="/workshops"    element={<Workshops />} />
             <Route path="/expert-talks" element={<ExpertTalks />} />
             <Route path="/food-recipes" element={<FoodRecipes />} />
-            <Route path="/contact-us"   element={<ContactUs />} />
+            {/* <Route path="/contact-us"   element={<ContactUs />} /> */}
             <Route path="/admin"        element={<Admin />} />
             <Route path="/test-sheets"  element={<TestGoogleSheets />} />
             <Route path="*"             element={<NotFound />} />

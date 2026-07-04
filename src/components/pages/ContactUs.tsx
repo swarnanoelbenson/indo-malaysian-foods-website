@@ -76,15 +76,15 @@ const ContactUs: React.FC = () => {
             <aside className="contact-info">
               <h2 className="section-title">Get In Touch</h2>
 
-              <div className="contact-info__item">
+              {/* <div className="contact-info__item">
                 <span className="contact-info__icon" aria-hidden="true">✉️</span>
                 <div>
                   <p className="contact-info__label">Email</p>
-                  <a href="mailto:info@imif.org" className="contact-info__value contact-info__link">
-                    info@imif.org
+                  <a href="mailto:info@imif.com" className="contact-info__value contact-info__link">
+                    info@imif.com
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <div className="contact-info__item">
                 <span className="contact-info__icon" aria-hidden="true">📍</span>

@@ -109,64 +109,7 @@ const Home: React.FC = () => {
         </Container>
       </section>
 
-      {/* ── Committee Members ─────────────────────────────── */}
-      <section className="page-section home-committee">
-        <Container>
-          <h2 className="section-title centered">Committee Members</h2>
-          <p className="home-section-lead">
-            Meet the dedicated researchers and practitioners driving this initiative forward.
-          </p>
 
-          {committeesLoading && (
-            <div className="home-committee__grid">
-              {[1, 2, 3, 4, 5, 6].map(i => (
-                <div key={i} className="skeleton home-skeleton--member" />
-              ))}
-            </div>
-          )}
-
-          {!committeesLoading && committees && committees.length > 0 && (
-            <div className="home-committee__grid">
-              {committees.map(member => (
-                <div key={member.id} className="member-card">
-                  <div className="member-card__photo-wrap">
-                    {member.imageUrl ? (
-                      <img
-                        src={member.imageUrl}
-                        alt={member.name}
-                        className="member-card__photo"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="member-card__initials" aria-hidden="true">
-                        {member.name
-                          .split(' ')
-                          .map((n: string) => n[0])
-                          .join('')
-                          .slice(0, 2)
-                          .toUpperCase()}
-                      </div>
-                    )}
-                  </div>
-                  <div className="member-card__body">
-                    <h3 className="member-card__name">{member.name}</h3>
-                    <p className="member-card__role">{member.role}</p>
-                    {member.university && (
-                      <span className="badge badge-outline member-card__uni">
-                        {member.university}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {!committeesLoading && (!committees || committees.length === 0) && (
-            <p className="home-empty">Committee information coming soon.</p>
-          )}
-        </Container>
-      </section>
 
       {/* ── CTA ───────────────────────────────────────────── */}
       <section className="home-cta hero-section">

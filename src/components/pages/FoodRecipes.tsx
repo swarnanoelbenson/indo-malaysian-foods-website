@@ -5,22 +5,6 @@ import RecipeModal from './RecipeModal';
 import { Recipe } from '../../types';
 import './FoodRecipes.css';
 
-const formatTime = (minutes: number): string => {
-  if (!minutes || minutes <= 0) return '—';
-  if (minutes < 60) return `${minutes} min`;
-  const h = Math.floor(minutes / 60);
-  const m = minutes % 60;
-  return m > 0 ? `${h}h ${m}m` : `${h}h`;
-};
-
-const difficultyClass = (level: string): string => {
-  switch (level?.toLowerCase()) {
-    case 'easy':   return 'recipe-card__difficulty--easy';
-    case 'medium': return 'recipe-card__difficulty--medium';
-    case 'hard':   return 'recipe-card__difficulty--hard';
-    default:       return '';
-  }
-};
 
 const FoodRecipes: React.FC = () => {
   const { data: recipes, loading, error } = useGoogleSheets('recipes');
@@ -82,41 +66,16 @@ const FoodRecipes: React.FC = () => {
                     ) : (
                       <div className="recipe-card__img-placeholder" aria-hidden="true">🍲</div>
                     )}
-                    {recipe.cuisine && (
-                      <span className="recipe-card__cuisine">{recipe.cuisine}</span>
-                    )}
                   </div>
 
                   <div className="recipe-card__body">
                     <div className="recipe-card__header">
                       <h2 className="recipe-card__name">{recipe.name}</h2>
-                      {recipe.difficulty && (
-                        <span
-                          className={`recipe-card__difficulty ${difficultyClass(recipe.difficulty)}`}
-                        >
-                          {recipe.difficulty}
-                        </span>
-                      )}
                     </div>
 
-                    {recipe.description && (
-                      <p className="recipe-card__description">{recipe.description}</p>
+                    {recipe.yieldInfo && (
+                      <p className="recipe-card__yield">{recipe.yieldInfo}</p>
                     )}
-
-                    <div className="recipe-card__stats">
-                      <div className="recipe-stat">
-                        <span className="recipe-stat__label">Prep</span>
-                        <span className="recipe-stat__value">{formatTime(recipe.prepTime)}</span>
-                      </div>
-                      <div className="recipe-stat">
-                        <span className="recipe-stat__label">Cook</span>
-                        <span className="recipe-stat__value">{formatTime(recipe.cookTime)}</span>
-                      </div>
-                      <div className="recipe-stat">
-                        <span className="recipe-stat__label">Serves</span>
-                        <span className="recipe-stat__value">{recipe.servings || '—'}</span>
-                      </div>
-                    </div>
 
                     <div className="recipe-card__footer">
                       <button
